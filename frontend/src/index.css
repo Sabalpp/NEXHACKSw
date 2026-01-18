@@ -1,0 +1,127 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Outfit:wght@100..900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-pulse: #00d4ff;
+    --color-glow: #7c3aed;
+  }
+  
+  body {
+    @apply bg-void-950 text-void-100 font-body antialiased;
+    background-image: 
+      radial-gradient(ellipse at top, rgba(0, 212, 255, 0.05) 0%, transparent 50%),
+      radial-gradient(ellipse at bottom right, rgba(124, 58, 237, 0.05) 0%, transparent 50%);
+    min-height: 100vh;
+  }
+
+  * {
+    @apply border-void-700;
+  }
+
+  ::selection {
+    @apply bg-pulse/30 text-white;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply bg-void-900/60 backdrop-blur-xl border border-void-700/50;
+  }
+
+  .glass-hover {
+    @apply glass hover:bg-void-800/60 hover:border-pulse/30 transition-all duration-300;
+  }
+
+  .btn-primary {
+    @apply px-6 py-3 bg-gradient-to-r from-pulse to-accent-400 text-void-950 font-display font-semibold 
+           rounded-xl shadow-glow-sm hover:shadow-glow-md transition-all duration-300
+           hover:scale-[1.02] active:scale-[0.98];
+  }
+
+  .btn-secondary {
+    @apply px-6 py-3 glass-hover rounded-xl font-display font-medium
+           text-void-200 hover:text-pulse;
+  }
+
+  .input-field {
+    @apply w-full px-4 py-3 glass rounded-xl text-void-100 placeholder-void-500
+           focus:outline-none focus:ring-2 focus:ring-pulse/50 focus:border-pulse/50
+           transition-all duration-300;
+  }
+
+  .card {
+    @apply glass rounded-2xl p-6 animate-fade-in;
+  }
+
+  .card-interactive {
+    @apply card hover:border-pulse/30 hover:shadow-glow-sm cursor-pointer
+           transition-all duration-300;
+  }
+
+  /* Waveform animation bars */
+  .waveform-bar {
+    @apply w-1 bg-pulse rounded-full transition-transform duration-150;
+  }
+
+  /* Status indicators */
+  .status-dot {
+    @apply w-2 h-2 rounded-full;
+  }
+
+  .status-dot-active {
+    @apply status-dot bg-success animate-pulse;
+  }
+
+  .status-dot-inactive {
+    @apply status-dot bg-void-600;
+  }
+
+  .status-dot-error {
+    @apply status-dot bg-danger;
+  }
+
+  .status-dot-processing {
+    @apply status-dot bg-heat animate-pulse;
+  }
+
+  /* Table styles */
+  .table-header {
+    @apply px-4 py-3 text-left text-sm font-display font-semibold text-void-300 uppercase tracking-wider;
+  }
+
+  .table-cell {
+    @apply px-4 py-4 text-sm text-void-200;
+  }
+
+  .table-row {
+    @apply border-b border-void-800/50 hover:bg-void-800/30 transition-colors duration-150;
+  }
+
+  /* Scrollbar styling */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    @apply bg-void-900 rounded-full;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-void-600 rounded-full hover:bg-void-500 transition-colors;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-gradient-to-r from-pulse to-accent-400 bg-clip-text text-transparent;
+  }
+
+  .border-gradient {
+    border-image: linear-gradient(to right, var(--color-pulse), var(--color-glow)) 1;
+  }
+}

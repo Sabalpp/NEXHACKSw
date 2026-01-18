@@ -1,0 +1,22 @@
+version: '3.8'
+
+# Production overrides
+services:
+  frontend:
+    build:
+      context: ./frontend
+      target: production
+    ports:
+      - "80:80"
+    volumes: []
+    environment:
+      - NODE_ENV=production
+
+  backend:
+    build:
+      context: ./backend
+      target: production
+    volumes: []
+    environment:
+      - NODE_ENV=production
+
